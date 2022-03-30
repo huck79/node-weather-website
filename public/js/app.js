@@ -19,7 +19,7 @@ weatherFrom.addEventListener('submit', (e) => {
     }
 
     // attempt to convert location to coordinates (geocode) and return the weather (forecast)
-    fetch('http://localhost:3000/weather?location=' + location).then((response) => {
+    fetch('/weather?location=' + location).then((response) => {
         response.json().then((data) => {
             if (data.errType) {
                 message1.textContent = 'Unable to find location. Please try again.'
