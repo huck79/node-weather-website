@@ -3,13 +3,12 @@ const searchTerm = document.querySelector('input')
 const message1 = document.querySelector('#message-1')
 const message2 = document.querySelector('#message-2')
 
-message1.textContent = ''
-
 weatherFrom.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const location = encodeURIComponent(searchTerm.value)
 
+    // make sure a location has been provided
     if (location.length === 0) {
         message1.textContent = 'You must provide a location to get the weather!'
         message2.textContent = ''
@@ -19,6 +18,7 @@ weatherFrom.addEventListener('submit', (e) => {
         message2.textContent = ''
     }
 
+    // attempt to convert location to coordinates (geocode) and return the weather (forecast)
     fetch('http://localhost:3000/weather?location=' + location).then((response) => {
         response.json().then((data) => {
             if (data.errType) {
